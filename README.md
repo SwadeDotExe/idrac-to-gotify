@@ -1,7 +1,9 @@
 # idrac-to-gotify
 A hacked-together SMTP → Gotify bridge built for Dell iDRAC systems that don't support TLS.
 
-This project provides a small bridge that lets older iDRAC systems send their email alerts to Gotify. Many early iDRAC versions can only send plain, non-TLS SMTP, which makes it difficult to forward their alerts to modern services, such as [Mail2Gotify](https://github.com/MattMckenzy/Mail2Gotify). This setup uses the excellent [alash3al/smtp2http](https://github.com/alash3al/smtp2http) container to receive the SMTP messages and a small translator service to format the alerts and send them on to Gotify.
+This project provides a small bridge that lets older iDRAC systems send their email alerts to Gotify. Many early iDRAC versions can only send plain, non-TLS SMTP, which makes it difficult to forward their alerts to modern services, such as [Mail2Gotify](https://github.com/MattMckenzy/Mail2Gotify). Even on the recent iDRAC9 that supports TLS, I am running the older 3.30.30 firmware so I can keep IPMI fan control, which means no TLS support.
+
+This setup uses the excellent [alash3al/smtp2http](https://github.com/alash3al/smtp2http) container to receive the SMTP messages and a small translator service to format the alerts and send them on to Gotify. I have tested this with the iDRAC9 system, but it should work with older iDRAC versions as well.
 
 ## Setup
 
