@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  smtp2http-idrac:
+    image: alash3al/smtp2http
+    container_name: smtp2http-idrac
+    restart: always
+    command:
+      - "--listen=:2525"
+      - "--webhook=http://translator:5000/smtp-hook"
+    ports:
+      - "2525:2525"
+    networks:
+      - idrac-notify
+
+  translator:
+    build: ./translator
+    container_name: smtp-to-gotify-translator
+    restart: always
+    environment:
+      - GOTIFY_URL=https://your-gotify-server.com
+      - GOTIFY_TOKEN=your-token-here
+    networks:
+      - idrac-notify
+
+networks:
+  idrac-notify:
+    driver: bridge
